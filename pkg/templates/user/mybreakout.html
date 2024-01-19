@@ -1,0 +1,88 @@
+{% extends 'user/home_layout.html' %}
+
+{% block content %}
+   <div class="content">
+    
+
+
+    <div class="row g-5"> 
+     
+
+    <div class="col-md-12">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+      Register for Breakout Sessions {{deets.myleveldeets.level_name}}
+      </h3>
+  
+      
+      {% if topics %}
+
+  <form action="" method="post">
+    <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col"> <input class="form-check-input border-dark" type="checkbox" value="" id="all"> </th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in topics %}
+          <tr>
+            <th scope="row"> 
+              {% if t.break_id in regtopics %}
+              <input class="form-check-input border-dark" type="checkbox" name="topicid"  value="{{t.break_id}}" id=""  checked>
+              {% else %}
+              <input class="form-check-input border-dark" type="checkbox" name="topicid"  value="{{t.break_id}}" id=""  checked>
+              {% endif %}
+
+            
+            </th>
+            <td>{{t.break_title}}</td>
+            <td>{{t.breakleveldeets.level_name}}</td>
+        
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+     
+
+  
+
+<div class="row">
+    <div class="col-md-11">
+        <div style="text-align:right">
+            <button class="btn custom-btn noround">Cancel</button>
+            <button class="btn btn-dark noround">Continue</button>
+         </div>
+    </div>
+</div>
+<input type="hidden" name="'csrf_token" value="{{csrf_token()}}">
+
+  </form>
+ 
+  {% else %}
+
+  <div class="alert alert-info">No breakout found in your Level </div>
+
+  
+  {% endif %}
+     
+
+
+    </div>
+
+   
+
+  </div>
+
+
+
+   </div>
+  </div>
+  {% endblock %}
+ 
+  {% block breakout %}{% endblock %}
+  {% block conversation %}{% endblock %}
+  {% block partner %}{% endblock %}
+    
